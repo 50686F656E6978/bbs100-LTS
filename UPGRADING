@@ -1,0 +1,146 @@
+bbs100 by Walter de Jong <walter@heiho.net> (C) 1997-2015
+
+bbs100 COMES WITH NO WARRANTY. bbs100 IS FREE SOFTWARE.
+bbs100 is distributed under terms described in the GNU General Public License.
+
+
+UPGRADING FROM bbs100 3.2 TO 3.3
+
+Timezone information can be read directly from /usr/share/zoneinfo/
+(if you have that directory). Put in etc/param:
+
+  zoneinfodir       /usr/share/zoneinfo/
+
+Two parameters were removed, so you can delete these from etc/param:
+  have_binalloc
+  chunk_size
+
+The people at GNU have a new address. You should install the updated version
+of the GPLv2 that is supplied as etc/GPL.
+
+
+--
+
+UPGRADING FROM bbs100 3.0 or 3.1 TO 3.2
+
+bbs100 3.2 contains a new menu-driven online Help system.
+The Help files reside under $basedir/etc/help/
+Be sure to update the etc/param file;
+
+add the line:
+
+    helpdir         etc/help/
+
+remove the lines:
+
+    help_std                etc/help.std
+    help_config             etc/help.config
+    help_roomconfig         etc/help.roomconfig
+    help_sysop              etc/help.sysop
+
+You may remove the files etc/help.*, but beware that you haven't
+customized them.
+
+If you forget to update etc/param in the way described here, the
+BBS will function normally and display the default Help files.
+
+
+UPGRADING FROM bbs100 2.x
+
+Be sure to update the files under etc/, such as the online Help files.
+See the WHATSNEW file and ChangeLog for new features and inform your users
+of them.
+It is always wise to make a backup before upgrading.
+
+
+UPGRADING FROM bbs100 1.x
+
+Upgrading from 1.x directly to 3.x is untested. Although it may work, if you
+encounter problems, try upgrading to 2.x first.
+You should know that you cannot go back to the old version once you have
+upgraded. This is because of the file format that the bbs uses from versions
+2.0 and up. Therefore, it is wise to make a complete backup copy of your
+existing bbs100 site. For example:
+
+    tar cvf backup.tar bbsdir
+
+After installing the new version, check the new configuration options in
+the etc/param file. This file is not automatically put in place when
+upgrading. You will also need to copy the etc/zoneinfo/ directory by hand.
+This directory contains time zone definitions needed by the improved
+BBS clock -- every user can be in his own timezone.
+
+As said, this version has a new file format. The BBS is capable of loading
+old-format files, and automatically converts them to the new format as the
+files are being used. Hence, files that are not being used (eg. because the
+user is not logging in anymore), are not converted to the new format.
+You have the option of converting the BBS' data files by using a conversion
+program. This is done as follows:
+
+    cd bbsdir
+    find users -type f -print | bbs100_convert --
+    find rooms -type f -print | bbs100_convert --
+    echo etc/statistics | bbs100_convert --
+
+Again, you will want to have made a backup before converting the files.
+Mind that if you have made any modifications to the data files, or if you
+are using site-specific data files, you will have to incorporate the
+changes into the BBS and the conversion program first.
+
+
+UPGRADING IN GENERAL
+
+Following are some standard instructions on how to upgrade any version
+of bbs100.
+
+To upgrade from an existing version of bbs100, do the following:
+- read the ChangeLog to see what's new
+- some versions may come with a WHATSNEW file, but not all
+  If the WHATSNEW file is present, read it
+- check the files UPGRADING, INSTALL, and README for new information
+- check the etc/ directory for new files and changes in files (namely the
+  Help files may change)
+- check the etc/param file for new parameters
+
+- make the new version:
+  * cd src ; ./configure --prefix={your prefix}
+  * make install
+
+  This installs the new binaries in ${prefix}/bin-${version}/
+  and symlinks it to ${prefix}/bin
+
+- verify that the new binaries have been installed correctly
+- inform your users and reboot the BBS
+  The new version should come up in a few seconds if all goes well.
+
+
+CLEANING UP
+The make upgrade process leaves the old bin directory of the BBS intact.
+If you are satisfied with the new version, you can safely remove the old
+bin directory.
+
+
+ERRORS
+If you are running a pre-1.1.2 installation of bbs100, you may get the
+following error:
+
+    /bin/rm: /home/bbs/bin: is a directory
+
+Or something like that, at the end of 'make upgrade'. To solve this, do the
+following:
+
+    ( cd /home/bbs ; mv bin bin-pre-1.1.2 )
+
+Now try 'make install' again, and you should be alright.
+
+
+THE PARAM FILE
+The etc/param file contains a parameter 'bindir'. People tend to think they
+have to update this parameter each time they install a new version. However,
+the opposite is true; 'bindir' should be set to 'bin' at all times -- the
+symbolic link provides 'bin' for us.
+Same goes for the parameters program_main and program_resolver.
+You should never have to touch these.
+
+
+EOB

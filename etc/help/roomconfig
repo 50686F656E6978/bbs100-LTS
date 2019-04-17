@@ -1,0 +1,32 @@
+<green>This Help screen is a list of keypresses that apply to the <yellow>Room Config menu<green>.
+
+<white><<yellow>space<white>><green>   Leaves the <yellow>Room Config menu<green>
+     <key>h/<key>?  Display this <yellow>Help<green> screen
+
+     <key>e    Edit room info
+<white>Shft-<key>I<green>    Invite/Uninvite user into invite-only room
+     <key>i    Show invited users in invite-only room
+<white>Shft-<key>K<green>    Kickout/Undo kickout user
+     <key>k    Show kicked users
+
+     <key>n    Change the room name
+     <key>c    Change room category
+
+<white>Ctrl-<key>L<green>    Reprint menu
+
+<white>Note: <yellow>Invite<green> and <yellow>uninvite<green> apply to invite-only rooms.
+      Also mind that<yellow> 'uninvite'<green> is not the same as<yellow> 'kickout'<green> and<yellow> 'invite'<green>
+      is not the same as<yellow> 'undo kickout'<green>.
+
+     Mind that a hidden room can be public; this is also known as a
+     <yellow>guess name<green> room. It is often desired to make a hidden room invite-only
+     as well. <yellow>Guess name<green> rooms can be configured off by a Sysop, so that
+     these rooms will appear as non-existent to users who have no business
+     there.
+
+     The option<yellow> 'Change room name'<green> is not available in the <yellow>Home><green> room.
+
+     The maximum amount of messages can be changed by a sysop.
+     If you want to have a room altered in another way, for example make it
+     invite-only, or have more room aides, please contact a sysop.
+ 

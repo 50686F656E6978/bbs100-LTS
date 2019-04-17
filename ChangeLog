@@ -1,0 +1,1327 @@
+Changes as of February 22nd 2015
+- view slab cache stats in Sysop menu
+
+Changes as of February 21st 2015
+- implemented a SLUB allocator
+
+Changes as of July 1st 2007
+- release 3.2
+
+Changes as of June 25th 2007
+- fixed crasher on some platforms (like debian PPC) where v*printf() does
+  not accept NULL as varargs parameter
+
+Changes as of June 22nd 2007
+- fixed bug; buffer overflow when logging in as Guest when a Guest was already there
+
+Changes as of May 28th 2007
+- fix stupid looking 'Originally in ...' when doing Reply in Mail>
+- fixed bug; sending double Mail replies back to the sender in some cases
+- fixed bug; 'v' reply to Answer/Question did not work
+
+Changes as of May 26th 2007
+- PARAM_HELPDIR configucable through Sysop menu
+- fixed typos in Help text
+
+Changes as of May 25th 2007
+- applied patch by Georbit to fix crasher bug
+- new Help system with a menu
+
+Changes as of May 11th 2007
+- removed all compiler warnings for gcc 4
+- updated zoneinfo files
+- make install also installs the zoneinfo files
+
+Changes as of November 7th 2006
+- IP mask should be entered in same form as IP address (v4 or v6)
+- fixed bug: mailing to yourself is possible again
+
+Changes as of November 3rd 2006
+- replaced get_basename() with standard basename()
+- Wrappers with in_addr and in6_addr, and inet_ntop(), inet_pton()
+
+Changes as of February 18th 2006
+- make live core dumps from the Sysop menu when built with -DEBUG
+  without having to crash the BBS
+- release 3.0
+
+Changes as of February 8th 2006
+- fixed dependencies on config.h for some includes
+
+Changes as of February 1st 2006
+- fixed race condition for sending Mail to enemies
+- Mails with MailTo.number not set are no longer saved
+- fixed race condition with logging out while receiving an X message;
+  the lost messages are saved as Mail
+
+Changes as of January 25th 2006
+- bugfix in logrotation: multiple rotation timers would be active at
+  the same time
+
+Changes as of January 24th 2006
+- bugfix; sometimes X would say that Y was busy mailing X, when Y was
+  mailing Z
+
+Changes as of January 19th 2006
+- version is now a symbol (nice for 'print version' command while analyzing
+  a core dump)
+
+Changes as of January 14th 2006
+- use KEEPALIVE sockets
+
+Changes as of January 8th 2006
+- safe cstrerror()
+- bind() retries for 2,5 minutes when the address is in use (the port is
+  in TIME_WAIT)
+- when debug is enabled, sysop has a crash option to dump core
+- lists are now sorted using merge sort, which is more efficient
+- word-wrapping didn't take the length of the prompt into consideration
+
+Changes as of January 7th 2006
+- view old logs in color as well
+- view yesterday's log (shortcut to the log archive)
+- edit reboot and shutdown screen from sysop menu
+- close() newfd before using dup2()
+- guard process reboots the BBS
+
+Changes as of January 6th 2006
+- Free() is a macro that resets argument to NULL (to be sure)
+- reboot/shutdown waits a bit longer so the logout can complete nicely
+
+Changes as of January 5th 2006
+- tiny fix in destroy_User()
+
+Changes as of December 29th 2005
+- closefile() checks for 0 byte files
+
+Changes as of December 13 2005
+- hidden room visibility for sysops
+- bugfix for removing all messages in a room
+
+Changes as of November 22nd 2005
+- added define USE_BINALLOC for if you want the special purpose mem allocator
+- configure option --enable-debug (default yes)
+- configure option --enable-binalloc (default no)
+
+Changes as of November 21st 2005
+- better bounds checking in timezone code
+
+Changes as of November 18th 2005
+- fix for displaying notify_unhold() message too often; shouldn't do this for
+  hold message mode when busy
+
+Changes as of November 15th 2005
+- fix for when Mail> and Home> have a different room name in the files
+  they must be named Mail> and Home> in bbs100
+- fix word-wrapping for dots '...' ; don't wrap on a dot
+
+Changes as of November 12th 2005
+- forwarding would crash when there was no message to forward
+- print time to shutdown/reboot
+- bugfix for removing timers from the queue
+
+Changes as of November 10th 2005
+- CONN_WAIT_CLOSE installs close-timer for ConnUser; CONN_WAIT_CLOSE2 sits idle until CLOSE
+
+Changes as of November 9th 2005
+- log rotation timer cannot modify the global timerq (SEGV)
+- when log rotation is set to 'never', keep the timer running anyway or you won't be able to
+  change log rotation from 'never' back to 'daily' or whatever
+- sigfatal() used to be a dummy, but can be called when SEGVing while blocking signals
+
+Changes as of November 8th 2005
+- more fixes for timers and signals
+
+Changes as of November 7th 2005
+- keep the timer queues sorted at all times
+- certain signals modify the global timerq, so they must be blocked when the timerq runs
+
+Changes as of November 6th 2005
+- fix for crasher when logins time out; cannot modify timerqueue from within
+  a timer function. This introduces the close_wait state and handler
+- disconnect user produces a notify_linkdead() message
+
+Changes as of November 5th 2005
+- fix for held busy (display after room prompt)
+- fixes for word-wrapping in chat rooms
+- better name matching in find_abbrevRoom()
+- sysop menu delete room asks for Yes/No
+- sysop menu nologin asks for Yes/No
+- sysop menu disconnect asks for Yes/No
+- sysops not allowed to disconnect/nuke/banish each other
+- nologin persists after reboot via file etc/nologin.is.active
+- connections hang around for 2 seconds after any kind of disconnect
+- fix for disappearing connections on Connection reset by peer
+
+Changes as of November 2nd 2005
+- automatic toggling of the HELPING_HAND flag fixed for ppl that are on hold
+- fixed crasher in loading old Mail
+
+Changes as of November 1st 2005
+- hidden rooms can no longer be found by trying all numbers
+- guess-name rooms can only be found by typing the exact name for the 1st time
+- hidden rooms that are invite-only give ACCESS_HIDDEN
+- invitations are no longer checked for rooms that are not invite-only
+- set core limit in bbs startup script
+
+Changes as of October 30th 2005
+- live daylight saving time changes when a transition occurs
+- check out of band data in mainloop
+- bugfix in handle_pending_signals()
+
+Changes as of October 29th 2005
+- bugfix in editing wrappers
+
+Changes as of October 27th 2005
+- bugfix in add_Timer()
+
+Changes as of October 25th 2005
+- "in reply to <user>" header for reply posts
+- fixed small memory leak in aborting replies
+- Sysop can no longer jump into people's Home> nor Mail>
+  (reading others Mail already was impossible, but Sysop could still go there)
+- original room name is saved in the message, so it displays this when
+  the room name is changed (like DOC does)
+- forwarded messages display 'forwarded from <room name>'
+- mail to 'Sysop' mails to all sysops
+- download expands carets to double carets
+- caret + non-color character produces exactly that
+
+Changes as of October 24th 2005
+- wrapping for asterisk
+
+Changes as of October 18th 2005
+- don't use tilde for color editing; it may appear in URLs
+
+Changes as of October 16th 2005
+- invites to Home> are no longer logged (respect privacy)
+- fixes in edit wrapping
+
+Changes as of October 15th 2005
+- bugfix in sort_List() for root pointers that are NULL
+
+Changes as of October 14th 2005
+- messages with only color codes are treated as empty
+
+Changes as of October 12th 2005
+- do not number X messages that were sent as Mail>
+- fixed bug in Zap All, function unjoin_room()
+
+Changes as October 11th 2005
+- redesigned loop_send_msg(); it now works by popping off the stack
+  although more allocating/deallocating, the code is much more comprehensible
+- fixed bug in validating the last_read field of Joined struct in load_User()
+
+Changes as of October 10th 2005
+- notification messages should not be received out of order
+- bugfix for line wrapping with spaces and tabs
+- bugfix for reply in X History
+- bugfix for mailing multi's that could not be received
+
+Changes as of October 9th 2005
+- bugfix in enter_minus_msg() with going back from the room prompt
+- bugfix; room aides are supposed to be sorted
+  (sort_StringList() takes address of the root pointer)
+- bugfix; BinMalloc() would fail for certain sizes because it always counts
+  to have a second marker in the bin
+- 's' Stops reading (without forgetfulness), but Skips on the room prompt
+- posting in an empty room caused you to be able to read back to message #0
+  (which does not exist) so the tail pointer has to be reset when posting
+- room cycling is off by default
+- auto-coloring of dots when editing
+- changed 'History' to 'X History', because it may be confused with the
+  History room, if present
+- colorbug in editing with > sign (due to edit_long_code())
+- word wrapping bug for words like "doesn't"
+
+Changes as of October 8th 2005
+- removed the OnlineUser Tree code; it doesn't work, and the Hash was more
+  efficient and memory-efficient anyway
+- when rebooting, the socket would still be in use, so it wouldn't bind
+- when a new user is creating, an error message would be logged about
+  loading the new user, because its profile info could not be loaded yet
+
+Changes as of October 6th 2005
+- guess-name rooms are configurable by Sysop
+- room visibility when loading users
+- rewrote joining/unjoining rooms when being invited/kicked
+
+Changes as of October 5th 2005
+- bugfix for visibility of hidden rooms
+
+Changes as of October 2nd 2005
+- time zones are offline when files are missing and a warning is logged
+- bugfix in cstrmatch()
+- umask 027 when doing first install
+
+Changes as of October 1st 2005
+- BinMalloc() wouldn't run on certain architectures; memory alignment fix
+
+Changes as of September 27th 2005
+- Feelings are now done with list_DirList() (and saving some memory)
+- use POKE_ARG to reset an argument (needed this for the Feelings menu)
+- RTF_UPLOAD would remain set after uploading sometimes
+- skip room doesn't always skip back to Mail>
+
+Changes as of September 25th 2005
+- sysop has access to the log archive
+- rewrote crummy code; select time zone in Config menu now uses DirList
+- ping: you can't be busy and idle at the same time
+
+Changes as of September 22nd 2005
+- added listdir(), but not using it yet
+- 'E' uploads message, as does 'M' for Mail
+- logged out users linger in an idle state
+
+Changes as of September 21st 2005
+- view logfiles in full color
+- new users are logged in a special newusers log;
+- sysop can have a look at the newusers log
+- new params NEWUSERLOG (filename) and MAX_NEWUSERLOG (# of entries)
+- logout pauses a short while before closing the connection
+
+Changes as of September 20th 2005
+- view bbslog and authlog from sysop menu
+- tab completion for room names works better
+- it tells you when there are new messages in a room
+
+Changes as of September 17th 2005
+- automatic override: when X disabled, people that you X, can X you back
+- toggle USR_BLOCK_FRIENDS removes friends from override list
+- 'X' disable resets the override list
+- (the override list is not saved upon logout)
+- override list can be managed by pressing 'o' at roomlevel or via the
+  friend/enemy list menus
+
+Changes as of September 14th 2005
+- bugfixes in forwarding messages
+- bugfixes for skip and read minus <n> messages
+- change room info in the same way as profile info
+- consistent with screens menu in sysop menu
+
+Changes as of September 13th 2005
+- option: set default room
+- removed PARAM_HAVE_CYCLE_ROOMS and turned it into an option
+- option: by default, enter message uploads
+
+Changes as of September 10th 2005
+- added PUSH_ARG and POP_ARG: argument passing via CallStack
+- sending mail in loop broke some stuff, took a lot of time to fix...
+- bugfix: it was not possible to Skip Lobby> nor Mail>
+
+Changes as of September 9th 2005
+- added option to block friends when X disabled
+
+Changes as of September 8th 2005
+- added Tree code
+- OnlineUser is now a Tree
+
+Changes as of September 7th 2005
+- changed Queue to QueueType so that it works like ListType
+- message->to is now a Queue
+
+Changes as of September 6th 2005
+- room->inside is now PQueue
+- room loading uses prepend_Room(), which is faster
+- HomeRooms uses prepend_Room()
+- feelings use prepend
+- usr->friends and usr->enemies are StringList again and use prepend
+- sort_List() modifies the root pointer
+- room_aides, invited, kicked are now sorted lists
+- use prepend_Joined()
+- helping hand selection is more efficient and truly LRU
+- temporarily disable helping hand status when locked
+- usr->scroll is now a PQueue
+- number of users in chatroom shown upon enter
+- a race existed for add/delete feeling; this race is now detected
+- delete Mail deletes all copies, undelete Mail undeletes all copies
+- scalability: mail is sent/deleted/undeleted in a loop
+
+Changes as of September 3rd 2005
+- added Queue type; it does efficient adding, prepending, and counting
+- bugfix; enter homeroom would display wrong room name to invited users
+- usr->chat_history is now a StringQueue
+- usr->recipients is now a StringQueue
+- usr->tablist is now a StringQueue
+- usr->friends is now a StringQueue
+- usr->enemies is now a StringQueue
+- who list works with PQueue
+- list_Count() is now called count_List(), analog to count_Queue()
+- room chat history is now a StringQueue
+
+Changes as of August 30th 2005
+- rewrote loop_send_msg() a bit
+
+Changes as of August 29th 2005
+- Yes/No prompts inconsistencies fixed
+- users can X to themselves again, esp. nice for checking out Feelings
+
+Changes as of August 28th 2005
+- sysop can upload files and screens
+- fixed case in which word-wrap didn't look so good
+- option show short/long color codes in downloaded text
+- option show pager for downloaded text
+- upload/download profile info
+- upload/download room info
+- sysop can add/remove feelings from within the sysop menu
+
+Changes as of August 27th 2005
+- Read New shows number of new messages
+- removed room->msgs and changed it into a head and tail pointer
+  this saves memory and is hyper-efficient
+- fixed bug; no new rooms could be created when room list was sorted by
+  category
+- who list room for sysops removed (could be used to spy on users)
+- log # of users online
+- long/short profile info
+- sysop can see user 'BBS birth date' in profile
+
+Changes as of August 24th 2005
+- cancel reboot works with same key as reboot
+  this kills the functionality of reprogramming a running reboot timer,
+  but hey ...
+- cancel shutdown works with same key as shutdown
+  this kills the functionality of reprogramming a running shutdown timer,
+  but hey ...
+- bugfix, shutdown/reboot broadcast message would sometimes print incorrect
+  time
+- changed memory object cache to work independently from memory allocator
+- new memory Stats
+- bugfix, Home> would not be visible in the known rooms list when chat
+  rooms are not enabled, but Home> rooms are. Homes are always chat rooms
+- bugfixes for when Lobby> is a chat room
+- removed memory object cache; it makes BinMalloc inefficient because it
+  doesn't know the underlying allocator is aligning things;
+  For stats, it was nice, but BinMalloc can display them too;
+  BinMalloc works like an object cache that does preallocation
+- linked memory bins of the same size
+
+Changes as of August 23rd 2005
+- new BinAlloc seems to be working alright
+
+Changes as of August 21st 2005
+- no error message would be given if bind_address was an IPv6 address, but
+  the system was not IPv6 enabled
+- removed BinAlloc; going to try a different approach
+
+Changes as of August 20th 2005
+- fixed bug in name resolving (was an unterminated string)
+- config option: sequence numbers on messages
+- hotkeys without angle brackets on dumb terminal: warn that user can
+  hit <k> to enable brackets
+- can also use ~ (tilde) for color editing
+- show message header and subject 'as is' when entering new message
+- chatroom messages arrive as you are editing, and they appear right
+  above the edit line (so it looks much better this way)
+- reduced MAX_SUB_BUF to only 8 bytes; it doesn't need more space
+- Conn.ipnum and Conn.hostname are now dynamically allocated
+- Message.subject, .anon, .deleted_by are now dynamically allocated
+- undelete message shows the message text and prompts you for a choice
+- 's' skips the room rather than stopping
+
+Changes as of August 18th 2005
+- parameter bind_address for binding to a specific interface
+
+Changes as of August 14th 2005
+- BinAlloc is finally working, but fragments just as much
+- sysop menu shows BinAlloc status
+- load_StringIO() allocates complete filesize in one go
+
+Changes as of August 13th 2005
+- implemented special purpose memory allocator but it's not any better than
+  malloc() at all ...
+- memory balance in sysop menu
+- bugfix for background color
+
+Changes as of August 7th 2005
+- input buffers initialized to small buffers
+- I/O buffers automatically shrink again
+
+Changes as of August 6th 2005
+- portability: use of bufprintf(), which really maps to snprintf(),
+  if you have HAVE_SNPRINTF
+- portability: eliminated use of strtoul(), use cstrtoul()
+- portability: use cstrerror() rather than strerror()
+- portability: use make_dir() rather than mkdir()
+- portability: use remove_dir() rather than rmdir()
+- bounds checking with cstrcpy(), cstrcat()
+- memory object cache can be switched on/off in a live system
+- hostmap works through file cache, no longer permanently resident
+
+Changes as of August 5th 2005
+- mkpasswd displays asterisks when entering a password
+- some minor things that a different compiler found
+- a few things lint came with
+- configure script changes
+
+Changes as of August 3rd 2005
+- most common functions work on history prompts
+- boss key works on all menus
+- customizable colors for symbols
+- Are you sure? on Nuke user
+- do proper output flushing of connections that are suddenly closed
+
+Changes as of August 2nd 2005
+- when in Held Message Mode, the user is unable to send messages
+- splitted state.c to state.c and state_room.c
+- "# 0" or "# 1" takes you to the first message in the room
+- state_history.c, '#', '+', '-' commands on history prompts
+
+Changes as of August 1st 2005
+- X History and Held Messages prompt have a new look
+
+Changes as of July 31th 2005
+- talked_to list generated from X history rather than always resident
+- friend/enemy list menu in same style as Config menu
+- friend/enemy list in sorted columns
+- room invites/kickouts in sorted columns
+- filecache works with references: big memory saver
+- bugfix in filecache expiration
+- Questions have corresponding Answers
+- questions counted in statistics
+- extended statistics screen for sysop with stats since boot time
+- removed md5 source checksums
+- clear_screen in More prompt for color terms, makes it look better
+
+Changes as of July 30th 2005
+- seperate config menu for customizing colors
+- config option: hotkeys can be printed as bold or not
+- Ctrl-L reprints menus and reprints page on --More-- prompt
+- bugfix in terminal height being off by one
+- (most) menu's printed with --More-- prompt for small terminal windows
+- buffer_text() for buffering to usr->text (now why didn't I think of this
+  earlier..?)   So I changed everything to work with buffer_text()
+- reversed zip code and city in profile (US style)
+- edit_tabname() does find enemies if USR_SHOW_ENEMIES is set
+
+Changes as of July 29th 2005
+- BUFMSG_SEEN flag no longer exists
+- introduced bitmask BUFMSG_TYPE; can have 256 message types
+- reference count on BufferedMsg; 1 copy for all references!
+- Sysops can press $ in toplevel menus to drop out of sysop mode
+- KEY_CTRL('Q') (hardcoded only) to temporarily force off auto-coloring
+- PARAM_HAVE_RESIDENT_INFO; option of throwing profile and room info out
+  of core memory and saving a few Ks. If you enable the filecache, there is
+  always the chance that is cached as well anyway
+- ROOM_DIRTY flag prevents unnecessary saving of rooms (esp. good for demand
+  loaded rooms Home> and Mail>
+
+Changes as of July 28th 2005
+- away reason for locking and hold message mode
+- config option of turning off asking for a reason
+- print online status after unlocking
+- nologin shown more clearly in Sysop menu
+- verbose friend notification for putting messages on hold
+- categories listed in columns in Sysop and Room Config menu
+- default is do auto-coloring
+- colored strings all changed to support 'Classic' and 'Modern' coloring
+- tabs in messages are possible; they expand to 4 spaces
+- color editing also possible with the caret: ^  (not just Ctrl-V)
+- formatting bug in the profile of Guest fixed
+- feelings_screen is outta here; constructed in usr->text
+
+Changes as of July 27th 2005
+- More prompt no longer resets color to green, but restores the color
+- auto-coloring of symbols. It's an option in the Config menu
+- fixed bug in statistics screen (it would display empty names)
+- config option: show angle brackets around hotkeys
+- bugfix: header on entering a new message shows sysop or room aide status
+
+Changes as of July 14th 2005
+- config menu option: verbose friend notifications
+- custom eXpress Message header
+- PARAM_HAVE_XMSG_HDR
+- vanity flag
+- PARAM_HAVE_VANITY
+- config menu option: disable multi Xs
+- room config menu looks a bit better
+- edit colors via <Tab> and <\> backtab
+
+Changes as of July 12th 2005
+- find function on --More-- prompt using StringIO
+- find backwards on --More-- prompt using StringIO
+- timezone menu uses StringIO
+- message text is StringIO
+- room info is StringIO
+- profile info is StringIO
+- BufferedMsg text is StringIO
+- usr->more_txt is out of here; everything is now StringIO
+- better input word-wrap, also wraps on smaller screens
+- better output word-wrap
+- live editing of long color codes (not all codes, just colors)
+
+Changes as of July 11th 2005
+- mainloop() improved
+- who lists, online friends list, talked-to list all with StringIO
+
+Changes as of July 10th 2005
+- minimum age requirement PARAM_HELPER_AGE for Helping Hand status
+  measured in days and may be 0
+  sysop-capable users get free ride
+- boss screen can be reloaded from the sysop menu
+- room info for Mail (hardcoded)
+- max_mail_msgs is now a live parameter, but only applies on re-login
+- max_messages is a default for new rooms
+- per-room maximum of messages, configurable via room config menu
+- bugfixes in time zone selection
+- cache is now StringIO
+- load_screen() uses StringIO
+- Help files use color code '<key>', which ignores USR_UPPERCASE_HOTKEYS
+- all screens work via the cache, except for the crash_screen
+- display nologin status upon login, if active (only useful for sysops)
+- profile_user() uses StringIO
+- known_rooms() uses StringIO
+- reading room info uses StringIO
+- fixed problem in mainloop(); sometimes you'd have to wait for a timeout
+
+Changes as of July 9th 2005
+- removed multi-language code
+- unknown keywords in etc/param ignored for compatibility, particulary
+  useful when upgrading
+- display random command on boss screen if the etc/boss file is missing
+
+Changes as of July 8th 2005
+- removed data port for now
+- define some signals for Win32 (cygwin) portability
+
+Changes as of May 29th 2005
+- Feelings are now cached files rather than always resident
+- feelings_screen is StringIO
+
+Changes as of May 28th 2005
+- --More-- prompt reads StringIO text and knows about terminal width
+- fixes in hline and center code (for the thousandth time)
+- load_xxx_version1() FF1_LOAD_UNKNOWN now ignores unknown keywords
+  enabling backwards compatibility for future versions
+- PARAM_HAVE_MEMCACHE controls whether you want Malloc() to use a freelist
+  or not
+- PARAM_HAVE_FILECACHE controls whether you want files to be cached
+  note that PARAM_MAX_CACHED also can be 0 to disable caching
+- option: always show hotkeys in uppercase
+- only relevant DST_Transitions are loaded; this saves memory
+- print_stats() works with StringIO buffer
+
+Changes as of May 20th 2005
+- '{' displays credits
+
+Changes as of May 19th 2005
+- name_with_s() is now possession() which works better for most
+  languages
+
+Changes as of May 15th 2005
+- wipe_line() wipes the current output line
+- checksumming of source code
+
+Changes as of May 13th 2005
+- no_cr patch applied; <cr> code no longer exists
+- render to Display context
+
+Changes as of May 12th 2005
+- patchlist so that you can see what patches are installed
+
+Changes as of May 5th 2005
+- MsgIndex list is gone; it is now an array of message numbers
+- I/O buffers now done via StringIO
+
+Changes as of May 4th 2005
+- mainloop() only uses read() when select() tells him to
+  (another speed improvement)
+
+Changes as of May 3rd 2005
+- new StringIO type
+
+Changes as of May 2nd 2005
+- real output buffer minimizes flushes (big speed improvement)
+
+Changes as of May 1st 2005
+- Hash uses new type KVPair
+- hostmap uses new type KVPair
+- param uses new type KVPair
+- feelings use new type KVPair
+- SU_Passwd use new type KVPair
+
+Changes as of April 30th 2005
+- pop() pops off the beginning of the list and returns popped item
+- remove() returns removed item
+
+Changes as of April 25th 2005
+- fixed bug in restartable timers
+
+Changes as of April 24th 2005
+- profile and login now show for how long someone was online last time
+- option force screen dimensions, with word-wrap
+
+Changes as of April 23th 2005
+- IPv6 capable wrappers
+- added possibility to lock out all users or New users only
+- this is controlled by PARAM_HAVE_WRAPPER_ALL
+- fixed bug in the defaults for boolean parameters
+- config option menu with some old options in it
+- new config option hold messages when busy
+- new config option room beep
+- new config option hide address from non-friends (by default enabled)
+- new config option hide profile from enemies (by default enabled)
+
+Changes as of April 19th 2005
+- IPv6 capable name resolver
+
+Changes as of April 18th 2005
+- we're now IPv6 enabled
+- PARAM_PORT_NUMBER and PARAM_DATA_PORT are strings; they can
+  also be specified by service name
+
+Changes as of April 17th 2005
+- added param umask, which has octal format
+- PARAM_LONG no longer exists because it was not used anyway
+- boss screen puts messages on hold, if param_have_hold is enabled
+- minus and plus keys in recipient list editing
+
+Changes as of April 16th 2005
+- data port moved to ConnData code
+- telnet code moved to Telnet.c
+
+Changes as of April 15th 2005
+- moved all socket code to Conn connection type
+- buffered name resolver using Conn type
+
+Changes as of April 10th 2005
+- came up with the data port
+  (lots of loose ends)
+
+Changes as of April 9th 2005
+- cycle rooms when there are no new messages
+  behaviour is controlled by PARAM_HAVE_CYCLE_ROOMS
+- crc32 hashkeys for language translations
+- lock screen shows BBS name; practical thing for _addicts_
+- boss key: the forward quote (tilde key)
+
+Changes as of April 7th 2005
+- PARAM_LANGUAGEDIR and PARAM_DEFAULT_LANGUAGE in Sysop menu
+- PARAM_HAVE_LANGUAGE
+- when locked, Sysops must use their Sysop password to unlock
+- added floors: categories and PARAM_HAVE_CATEGORY
+
+Changes as of March 30th 2005
+- expand_hline() optimized to work with width as well
+
+Changes as of March 13th 2005
+- <hline> and <center> now correctly expanded in long Who list as well
+
+Changes as of March 5th 2005
+- <hline> is now recursively interpreted and can handle colors
+
+Changes as of March 4th 2005
+- locale system; special language needs through hooks
+
+Changes as of March 2nd 2005
+- the language system seems to be working
+
+Changes as of March 1st 2005
+- removed obsoleted function getpass() from mkpasswd
+- (it's been a year!)
+
+Changed as of August 20th 2004
+- bugfix in state_forward_room() when forwarding to someone else's mail room
+
+Changed as of June 25th 2004
+- bugfix in logging in (big bad hole which can reset any user to new)
+
+Changes as of February 17th 2004
+- bug in color_strlen() when using multiple '<<<<' signs
+
+Changes as of February 1st 2004
+- Mac OS X update, thanks to Jeremy Stock <jstock@speedymail.org> :
+- updated config.guess and config.sub scripts (they were ancient and
+  failed to detect certain OSes, like Mac OS X)
+- compilation breaks on Mac OS X in ipv4_aton.h; fixed
+- init_process() is a system library function on Mac OS X; changed to
+  bbs_init_process()
+- make no longer runs: nm -P main > symtab
+  because the -P is not supported on all platforms
+- released as 2.1
+
+Changes as of January 25th 2004
+- added BBS birthday as suggested by Stephan van Beerschoten
+  <stephanb@whacky.net>
+- changed 'Tab' to match substrings as well for room names
+  inspired by a suggestion of Shannon Prickett <binder@manjusri.org>
+- released as 2.0
+
+Changes as of January 21st 2004
+- fixed bugs with logging in; too many attempts
+- fixed small bug in custom colors menu
+
+Changes as of January 17th 2004
+- replaced inet_aton() with ipv4_aton() to avoid build trouble on Solaris
+- fixed bug in the profile function
+- fixed small problem when banishing the 'New' user
+
+Changes as of January 11th 2004
+- PARAM_BOOL feature toggles
+- defines LOBBY_ROOM, MAIL_ROOM, HOME_ROOM as fixed room numbers
+  as suggested by Shannon Prickett <binder@manjusri.org>
+
+Changes as of December 30th 2003
+- tiny IRIX fixes
+- new user and Guest get default timezone as specified in etc/param file
+
+Changes as of December 29th 2003
+- removed static buffers from functions
+- added the new parameters to the sysop menu
+- added bbs100_convert program for converting data files
+- fixed bug with loading long lines in messages (long color codes again)
+
+Changes as of December 28th 2003
+- users can select personal timezone in the config menu
+
+Changes as of December 13th 2003
+- rewrote worldclock to use new Timezone structure
+
+Changes as of December 11th 2003
+- signals are now caught but only flagged as pending; they are handled
+  out of the signal handler context, synchronously in the program
+  this is much safer and better than it ever was
+- command line options to main program: -d for starting in a debugger
+- nologin moved to state_login.c; when nologin is active, everyone can
+  connect, but only superusers may login
+- fixed ugly display of long message headers (especially in Mail>)
+- message numbers no longer shown in Mail> replies because it is not correct
+- file format of userfiles has changed
+- file format of saved messages has changed
+- file format of rooms has changed
+- file format of statistics file has changed
+
+Changes as of December 10th 2003
+- parameter cache_expire specifies how long unused files remain resident
+  the file cache (in minutes)
+- 'make' output makeover
+
+Changes as of December 9th 2003
+- internal file cache can be set to 0 to disable it
+
+Changes as of November 14th 2003
+- more autoconf portability checks and workarounds
+
+Changes as of November 9th 2003
+- OnlineUser hash is now a generic hash
+- removed stats.pl script from the dist, because this has all changed due to
+  the log file rotation
+- help files etc. are now loaded through the cache
+  the login/logout screen are still permanently in memory
+
+Changes as of November 8th 2003
+- changed behaviour of displaying hidden rooms in the known rooms list
+- room aides can now activate subjects and anon posts from the room config
+  menu
+- added generic hash code
+
+Changes as of November 2nd 2003
+- fixed bug in edit_name(!)  backspace messed it up, as noted by Richard
+  of MatrixBBS
+- anon aliases should always be forced to lowercase
+- added 'x' flag in who list when someone is sending you a message
+- added 'm' flag in who list when someone is mailing you a message
+- tell user at logon that (s)he has message reception turned off
+
+Changes as of October 30th 2003
+- crash recovery : protection against looping and crashing again and again
+- option in param file: 'oncrash' can be 'recover' or 'dumpcore' or 'whatever'
+- savecore : archiving of core files
+
+Changes as of October 28th 2003
+- Timers have void* argument instead of User* argument
+- timerq is now sorted and works with 'relative' time; more efficient
+
+Changes as of October 27th 2003
+- automatic log archiving
+- option logrotate: daily/weekly/monthly/none
+- fixed friend notification when locked & relogging (reported by Eeyore)
+
+Changes as of October 26th 2003
+- changed logging; now done to log/bbslog and log/authlog
+  logd program is outta here
+
+Changes as of October 25th 2003
+- added timezone information for the world clock function
+  which is exciting, because tonight we switch from CEST to CET again
+
+Changes as of October 21st 2003
+- put the source in svn
+- 'g' is for Goto next unread room
+- fixed typo in etc/shutdown
+
+
+Changes as of November 25th 2002
+- next_unread_room() first checks Lobby>, then Mail>, then other rooms
+- changed version number to 1.2.0
+- released as 1.2.0 (first new release after a year..!)
+
+Changes as of October 31st 2002
+- 't' shows Time with a neat calendar and world time zones
+- added site-specific hooks for loading/saving UserData
+
+Changes as of October 25th 2002
+- replies in rooms without subjects show up as 'Re: <message number>'
+- forwarded messages without subject have subject '<forwarded from <room name>>'
+- forwarded messages in rooms without subject show up as 'Fwd: ...'
+- bugfix: only directories with completely numeric names are loaded as rooms
+  upon startup
+
+Changes as of October 24th 2002
+- file opens are now always done thru 'atomic' openfile() and closefile()
+  this prevents files from becoming corrupted if the bbs reboots or crashes
+  during a file write
+
+Changes as of October 22nd 2002
+- enter/leave messages in chat rooms are no longer logged in the room history
+  (because it is annoying to see ppl only wandering in and out)
+- every room now keeps an 'inside' list of users
+- if you having beeping enabled, and a message is posted in the room you are in,
+  it will beep ya
+- Ctrl-W in Sysop mode gives the option 'Who is in this room'
+
+Changes as of October 21st 2002
+- when replying from within X history (Ctrl-X) or hold mode (Ctrl-B),
+  you don't fall out of that mode anymore, but nicely return to it
+- empty Quicklist entries are now displayed as "<empty>"
+
+Changes as of October 19th 2002
+- hold message mode silently toggles Helping Hand mode
+- added donated features/fixes by Richard of MatrixBBS:
+  - press Ctrl-T for talked-to list
+  - Ctrl-D on roomprompt changes Doing
+  - typo: receiption vs. reception
+  - typo: "suddenly logged off"
+  - enable/disable Xs remembers if you were available to help others
+  - MailAnywhere: 'm' on roomprompt sends mail
+  - WarnFollowUp: 'user is busy sending you a message in follow-up mode'
+  - profile shows total amount of time the user is online
+  - PARAM_NAME_SYSOP can no longer be used as login name
+    (too bad for people who already had such a login name)
+
+Changes as of July 20th 2002
+- major rewrite of mainloop(), code cleanup and it fixes a bug:
+  the connection could lock up when sending lots of input at once (upload)
+
+Changes as of May 31st 2002
+- added a free_list to Memory.c for faster allocation/reuse of objects
+
+Changes as of May 20th 2002
+- changed design of how busy/held/normal messages arrive
+- added tags <hline> and <center> for help texts and such
+
+Changes as of May 19th 2002
+- fixed bug; BUFMSG_SEEN sometimes wasn't set when someone logged
+  off in between
+  usr->send_msg is now a seperate copy of the message
+- press Ctrl-B for hold message mode
+
+Changes as of May 14th 2002
+- fixed bug in MD5 password encryption
+- colors now also may be specified via long notation:
+  <red>, <green>, <yellow>, <blue>, <magenta>, <cyan>, <black>,
+  <beep>, <lt>, <gt>, <normal>, <default>
+
+Changes as of May 12th 2002
+- Toggle Beep moved from Ctrl-B to 'B'
+- new feature: Ping shows for how long a user is idle (after 2 minutes)
+
+Changes as of May 11th 2002
+- put the source in CVS
+  was a bit of a hassle :P
+- changed 'make setup' to create directories rather than copy them
+  from the dist tarball
+- fixed bug in Sysop menu
+- 'a' for Read Again
+- '(' for Read Parent of a Reply
+- better word-wrapping
+- Ctrl-W for erase word in posts and Xs
+- added Ctrl-W for erase word in edit_line
+- 'ABORT' aborts an X message
+- 'b' on --More-- prompt, but on the first page, quits the --More-- prompt
+- Lobby> is always checked for new posts
+- deleting all posts in a room now prints a warning message
+  about resetting the creation date as well.
+  It is still a bug, but at least it now gives a warning about it...
+- in the Sysop menu, for Disconnect, Nuke, Banish, the name list will
+  be empty by default to prevent accidents... :)
+  Same goes for Kick in the Room Config menu
+- upon login, if you have new mail, but there is also a new Lobby>
+  post, you'll read the Lobby> first
+  Otherwise you automatically end up in Mail>
+- Ctrl-R for uploading replies
+  The code was there, but it was disabled..!
+  The Room Config menu is now accessed via Shift-A or Ctrl-A
+  just like it has been on MatrixBBS for ages now
+
+Changes as of November 1st
+- fixed bug in inviting/kicking users
+- friends are no longer notified of login if the login kills another login
+  by the same user
+- fixed bug in anonymous posting
+- fixed memory leak (the number of Joined structures that was allocated)
+- released as 1.1.12 (bugfix release)
+
+Changes as of October 18th
+- added OnlineUser: hash of online userlist for fast is_online() lookup
+- added PARAM_USERHASH_SIZE to control size of the online user hash
+- released as 1.1.10
+- bugfix ; OnlineUser structures were never freed in memory
+- released as 1.1.11 (also known as the 0F release)
+
+Changes as of October 17th
+- added an extra '<space><backspace>' to erase_many() in edit.c
+  I wonder when this glitch slipped in since it's been there for quite a while
+  and I wonder if this 'breaks' any other pretty-printing when editing the
+  recipient list
+- cache hit and miss counters are now reset when you resize the cache
+- quickly released as 1.1.9
+
+Changes as of October 16th
+- fixed bug in Reply All (sometimes the same recipient could show up multiple
+  times in the recipient list, and thus recieve double messages)
+
+Changes as of October 15th
+- the file cache finally works the way it should:
+  * it's a hash of linked lists (for fast searches)
+  * it's got a FIFO with head and tail pointers (for LRU algorithm)
+  * it's resizeable
+  * File and CachedFile are seperated from each other
+  * the interface is more like in BBX (Fopen(), Fclose(), etc)
+  I was feeling kind of ill when I wrote this, so I wonder if there are any
+  bugs in it -- it all seemed to work the way I want it to when testing.
+- changed 'unzappable' to 'not zappable'
+- grammatical error "You do get it (by) this way" fixed
+- released as 1.1.8
+
+Changes as of October 12th
+- fixed the backspace key
+- fixed bug in "busy mailing you a message"
+- added "busy sending/mailing you a message" when logging out
+- released as 1.1.7
+
+Changes as of October 10th
+- changed some things in the telnet negotiations (like DEL/BS translation,
+  and '\n' is now ignored). This ought to fix certain weird problems that Mac
+  and some Windows users were experiencing
+- logd now logs in localtime instead of annoying gmtime
+- released to the public as 1.1.6
+
+Changes as of October 7th
+- fixed problem with distribution; some compilers choke on the control
+  characters in the source
+  as reported by Richard Odekerken <richard@odekerken.net>
+- fixed small bug in distribution; when doing a fresh install, there was
+  a thingie with bin/
+
+Changes as of October 6th
+- added NOCTTY in main.c to detach of controlling tty even more
+
+Changes as of October 1st
+- added stats for Feelings
+- for Sysops: list cache size as well in the Stats
+- fixed typos in etc/hostmap; some countries should begin with 'the'
+- this version was given to the test site as 1.1.6
+
+Changes as of September 23rd
+- added RTF_LOOPING, LOOP_STATE, and usr->loop_counter for 'multiplexed' loops
+- undeliverable messages can now be sent as Mail>
+  (messages are undeliverable when someone logs off, locks, or disables 'm)
+- Config menu> Terminal settings screen is now is magenta instead of green
+- fixed bug: <empty> does not wish to receive Mail> from you
+
+Changes as of September 22nd
+- fixed typo: "Guest cannot play reply to messages" now reads "Guest cannot
+               reply to messages"
+- fixed typo: "Guest cannot play forward messages" now reads "Guest cannot
+               forward messages"
+- fixed: "Auto enabling room aide functions" changed to "Auto enabling %s
+          functions", PARAM_NAME_ROOMAIDE
+- changed "Super User" to PARAM_NAME_SYSOP everywhere in the code
+- changed "room aide" to PARAM_NAME_ROOMAIDE everywhere in the code
+- improved the check for empty messages
+- added usr->new_message, which should fix a couple of weird bugs caused by
+  the fact that new and read messages were not seperated in the User struct
+- added flag ROOM_HOME for Home> rooms, which makes sure no Sysop is messing
+  around with Home> rooms in the Room Config menu
+- added line in help.std about Home> and /Ctrl-R
+  reported by Ruben van Staveren <ruben@verweg.com>
+- removed line in help.roomconfig about assigning room aides
+- help.roomconfig: Change room name is not available in the Home> room
+- fixed reply bug; message number was wrong when replying to a reply
+  (reported by Mz Boobala <boobala@whacky.net>)
+
+Changes as of September 21st
+- fixed message deletion bug, as reported by Mz Boobala <boobala@whacky.net>
+- emergency release as 1.1.5
+
+Changes as of August 31st
+- fixed small memory leak
+- fixed possible crasher, which apparently never occurred, but is fixed anyway
+- released as 1.1.4
+
+Changes as of August 22nd
+- fixed bug in Timer.c : reboot and shutdown timer didn't work correctly
+  when ppl logged out (first reported on beta test site)
+
+Changes as of August 21st
+- Arend Brouwer <arend@belboek.com> reported that the password encryption
+  does not work properly on FreeBSD 4.0 with MD5 enabled.
+  Should be fixed now, although I do not have an oppertunity of testing the
+  fix, and there is a slight possibility that the system on which the problem
+  occurred was not properly installed
+- Guest can no longer lock, as suggested by Stephan Beerschoten
+  <stephanb@whacky.net>
+
+Changes as of August 17th
+- Jason Lentz <lentz@westpole.net> reports that Slackware Linux has its
+  own SignalHandler type in /usr/include/signal.h
+  To fix this, SignalHandler is now called SignalVector
+  The whole SignalHandler code is way overkill (it's used only once) but
+  that's another story...
+- added Ctrl-G for GPL ; etc/GPL
+- added ']' for local mods list ; etc/local_mods
+- added '[' to reflect version info
+- added params gpl_screen and mods_screen
+- added gpl and mods in the Sysop|Params|Reload menu
+- redid the Sysop|Params|Files menu, now includes gpl, mods, and hostmap
+- updated the help files, as well as INSTALL, README, NOTES, etc
+- improved 'make setup' and added file UPGRADING
+
+Changes as of August 14th
+- notify_friends() now beeps (for users that have beeping enabled)
+
+Changes as of August 12th
+- added 'make setup' for easier installation procedure
+
+Changes as of August 9th
+- version 1.1.1
+- fixed bug; write_pidfile() used PARAM_PID_FILE before param was loaded
+  as pointed out by C-H-I-P-S <chips@demon.mudservices.net>
+- fixed bug; var was declared time_t *t but should've been time_t t
+
+Changes as of August 6th
+- removed all FIFO code from CachedFile.c
+  The cache now is a standard hash, no more bugs damnit!!
+- removed command parser because it was only used by the internal debugger
+  (which is gone now too)
+- added memory allocation status in Sysop menu
+  it has allocated object counters, which is done by Malloc(), which uses
+  the Types_table
+- added 'Uncache file' in Sysop menu
+- added 'Is date correct?' in Time Zone Config for ppl at the date border
+- fixed width Statistics screen
+  It works for reasonably long names now. It's not perfect, but a lot better
+- added a hostmap ; you can now set descriptions for where users come from
+
+Changes as of August 5th
+- removed online debugger (because it can cause corruption and crashes)
+- added Config TimeZone (sync clocks + 24 hr clock vs 12 hr clock)
+- first release will be called 1.1.0 because I have to do some more things
+
+Changes as of August 2nd 2000
+- removed all license code
+- set version number to 1.0.0
+- we're going to be released under GPL soon
+
+Changes as of July ...?
+- removed memory hash -> suddenly giant memory leak is gone
+
+Changes as of May 3rd
+- fixed giant memory leak : Free() didn't find the address due to a buggy
+  long -> int conversion (or something..??)
+
+Changes as of April 28th
+- finally fixed the filecache FIFO head and tail pointers
+- filecache finally is a hash, now it is more efficient!
+
+Changes as of April 18th
+- added Memory.c ; use Malloc() and Free()
+  still have to make the garbage collector work somehow...
+
+Changes as of March 22nd
+- fixed: users die al uitgelogd waren, waren nog even visible in de
+  who-list
+
+----
+Changes as of March 8th
+- Ctrl-F in Mail> mails to all friends
+- wrappers; editing netmask
+
+Changes as of February 13th
+- online friends list (Ctrl-F) now sorted by name and in columns
+- user himself/herself is shown in white in the who list
+
+Changes as of February 10th
+- short Who-list now sorted column-wise, just like Feelings
+
+Changes as of February 6th
+- We have Feelings (press '*')
+  Feelings can be customized by the admins
+- To toggle message receiption, press 'X'
+
+Changes as of February 1st
+- sort_List() now uses qsort() instead of doing a bubble sort
+- completely rewrote Who list code
+
+Changes as of January 31th
+- got code to work again last weekend :P
+- fixed Reply All bug that popped up
+- Ctrl-W to customize who list
+- Added customize who list to Config menu as well
+
+Changes as of January 20th
+- added chat rooms
+- added personal room: Home> (press Ctrl-R at Home> to customize)
+  This room always is room #2 (which causes some 'trouble' with roominfo_read)
+
+====
+
+Changes as of January 7th
+- finished the debug 'set' function (implemented debug_reference())
+
+Changes as of January 6th
+- gotten the 'set' function in the online debugger to work
+- fixed bug in Quicklist in Config menu
+- fixed bug in tab key when tabbing through a list of names
+- fixed bug in backtab key '\' when tabbing backwards through a list
+
+Changes as of January 5th
+- added configurable notify_login, notify_logout, notify_linkdead,
+  notify_idle, notify_locked, notify_unlocked
+- source has reached a total of 24,000 lines
+
+Changes as of January 4th
+- changed 'bbs99' to 'bbs100'
+- changed SymbolTable loader to accept nm POSIX.2 format only
+- fixed bug in Ctrl-Z Zap All Rooms
+
+Changes as of January 3rd
+- made OffsetOf() macro to fully support interactive walking of structs
+  in the near future (which will obsolete 'set user')
+
+Changes as of January 2nd
+- added debugger function 'set user'
+
+Changes as of January 1st
+- added debugger struct definitions
+
+Changes as of December 31st
+- changed debugstack to use SymbolTable (much faster now)
+
+Changes as of December 30th
+- Debugger dumps all important types, except CachedFile (harder because it's
+  a tree)
+- Debugger pretty-dumps flags and dates
+- Debugger uses a symbol table to pretty-dump function pointers
+
+Changes as of December 29th
+- fixed locked bug when exiting the room config menu
+- fixed 'Sysop' header in X messages/Questions/Emotes
+- added NoZap flag to rooms
+- added Debugger to Sysop menu (not fully functional yet)
+
+-----
+
+Changes as of December 27th/28th/29th
+- fixed bug in Mail> access
+- fixed broken word wrap
+- fixed Guest login time
+- removed "login as 'Guest' to look around" from BBS code
+  (admins should put it on the login screen)
+- when x-ing/emote-ing/question-ing as Sysop, the msg header now shows
+  'from Sysop: <name>'
+- fixed bug in auto-replying to a message
+- the number of lines in an xmsg is now dynamic; configurable by admin
+- HHs now auto-reply to questions even if they were busy when the question was
+  received
+- added dynamic temp buffers
+- New users get 'is new to <bbs_name>' as default doing
+- integrated ton of parameters in param file into the sysop menu
+
+Changes as of December 23rd 1999
+- EDIT_INIT state was often not called (numerous erroneous flag settings have
+  been fixed)
+- added ton of parameters to the param file
+  however, 'Sysop' remains a reserved name
+- Guest logins didn't have a mailbox anymore, causing them to be unable to
+  read any rooms
+
+Changes as of December 22nd 1999
+- moved loading of Mail> room from go_online() to load_User()
+- possibly fixed Mail> problems (? (SIGUSR1 handler))
+- changed generation number to reflect room creation time
+  This fixes what is design flaw in other DOC-like BBSes (the incremental gen
+  number)
+- Questions fully implemented (press 'q' or 'Q')
+  Questions won't go to enemies
+- QuickView Quicklist moved to Ctrl-Q
+- anyone can become available to help others (press '%' to toggle)
+
+Changes as of December 20th 1999
+- message forwarding didn't work at all anymore; fixed
+- total online time shown in profile and stats changed
+- increase generation function is no longer accessible to RAs; sysops only
+- 'Sysop' is now a reserved login name
+- Guest user and multiple simultaneous Guest logins
+- it said '%s is busy sending you a message' in cases where this was not true
+- added '%s is busy mailing you a message'
+- fixed messed up prompt when editing multiple recipients and getting an error
+  message
+- press '-' for Read Last n messages
+- press '+' for Skip n messages
+
+Changes as of December 16th 1999
+- changed loading of joined rooms in users (muuuuch faster now)
+- completely rewrote the routines that make you find new messages in rooms
+- changed the known rooms function
+- Anon rooms are now marked with a green 'A' in known rooms list
+- typo on login for New users :P
+- included a crude check for empty messages
+- RAs can't unassign co-RAs (they can _assign_ them, however)
+- RAs can't unassign themselves
+- changed help.roomconfig
+- changed periodic saving of users to 5 minutes
+- known room list is now sorted by number
+- newly created rooms get 'unused' room numbers
+- fixed buffer overflow when pressing tab on Jump room
+- completely new (and different) licensing mechanism
+- sysops can see when the license expires in the Statistics screen
+- fixed 'UNREGISTERED blah blah' bug (buffer overflow)
+- spent two hours figuring out why it crashed when an invalid license was
+  replaced with a valid one; turned out it is unsafe to remove timers from the
+  timer queue from within a timer function
+
+---
+
+Changes as of December 15th 1999
+After a year I have decided to finally go keep a history log.
+It's been about 4 to 5 months since I've done _anything_ on the code, so
+it was like meeting an old friend ;)
+
+- crash handler now attempts recovery: keep the bbs running anyway
+  This function is highly experimental (don't be surprised if it messes up)
+- editing multiple recipients now works better (had a problem in Mail>)
+- reply to one person won't require a <return>
+- followup mode won't require a <return>
+- terminal size was not remembered if user made a mistake while logging in
+- when profiling someone who is not online, the name is not remembered
+  (and thus fixing the stupid message 'In the meantime, %s has logged off' when
+   he/she never was online)
+- SIGQUIT reboots the bbs in 5 minutes
+- SIGABRT shuts the bbs down in 5 minutes
+- SIGTERM does a quick shutdown (save all users and exit)
+- SIGUSR1 checks for new mail for all online users
+- RAs now have more options in the Room Config menu
+- hidden and/or invite-only rooms are now handled correctly (no longer appear8
+  as Zapped)
+  RAs of such rooms should increase the generation number of the room in order
+  to make everything work correctly (which also causes everyone to re-read the
+  room)
+- room aide functions will be automatically enabled when a RA presses Ctrl-R
+  in his/her room
+- users are now saved every 10 minutes
+- known rooms ('k') and all known rooms ('K') now print list in the same order
+- fixed default reboot/shutdown time in sysop menu
+- the Mail> room now can have room info (even though it's not possible to set
+  from within the bbs)

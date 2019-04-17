@@ -1,0 +1,33 @@
+<green>This Help screen is a list of keypresses that apply to the <yellow>Config menu<green>.
+<yellow>
+<space><green>   Leaves the <yellow>Config menu<green>
+     <key>h/<key>?  Display this <yellow>Help<green> screen
+
+     <key>a    Change address information
+     <key>i    Change your personal profile information (put something nice here)
+     <key>v    Add a piece of flair to your profile
+     <key>d    Change 'doing' field that shows up in the who list
+     <key>r    Change reminder; the reminder is shown at login
+     <key>x    Customize the header of eXpress Messages sent by you
+     <key>y    Change default anonymous alias, when posting anonymously
+     <key>p    Change your password
+     <key>t    Change terminal settings, like colors on/off, etc
+     <key>w    Customize how the Who list is displayed
+     <key>o    Toggle various settings
+     <key>q    Quicklist (for quick X messaging at room level)
+     <key>f    Friend list: Add and remove friends
+     <key>e    Enemy list: Block users
+     <key>z    Configure time
+
+<white>Ctrl-<key>L<green>    Reprint menu
+
+<white>Note:<green> You are not obliged to fill out your address information.
+      You have the option of hiding it from specific people in the <yellow>Options<green>
+      submenu. Mind that without hiding it, anyone can <hotkey>profile you
+      and see your real name, home address, phone number, etc.
+<red>
+<center>THE MANAGEMENT OF THE SYSTEM IS NOT RESPONSIBLE FOR ANY
+<center>MISUSE OF THIS PERSONAL INFORMATION.
+<green>
+      Please do not put 'funny' rubbish in the address fields.
+ 

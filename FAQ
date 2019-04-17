@@ -1,0 +1,116 @@
+bbs100 by Walter de Jong <walter@heiho.net> (C) 1997-2015
+
+THE NAME
+Why is it called bbs100?
+Well, I wanted to call it 'FreeBBS', but the name has been used over and
+again by others :(     Also, until the year 2000, this code wasn't free at
+all. One of my previous projects was called 'bbs10' because it was about
+the 10th time I started over again writing a BBS from scratch.
+In 1999, I called it bbs99, and with the millenium change I pretended that
+it was a millenium bug and called it bbs100 as a joke. Silly joke of course,
+but the name stayed.
+
+
+PRONOUNCIATION
+How is 'bbs100' pronounced?
+Just "bee-bee-es one-hundred" or "bee-bee-es-hundred" if you like.
+
+
+WHY DID IT TAKE SO LONG FOR VERSION 3.0 TO COME?
+I kept making big changes, and when it was finally done, it still had
+to be tested for stability for a reasonably long period.
+bbs100 does not really adhere to the unwritten rule 'release frequent'.
+I'd rather deliver a quality product than an intermediate version that
+is full of weird bugs.
+
+
+PORTABILITY
+What platforms does bbs100 run on?
+Basically, it runs on any POSIX compliant platform.
+So far, I've succesfully compiled and run bbs100 on the following platforms:
+
+    Platform                Architecture
+------------------------------------------------------------------------------
+    Linux 3.x               ARMv7 (Raspbian)
+    OS X 10.x               intel iMac, MacBook, MacBook Air, MacBook Pro
+    Linux 2.x / 3.x         intel PC  (Debian, RedHat, Slackware, Arch)
+    Linux 2.x               DEC Alpha (as tested by News of MatrixBBS)
+    LinuxPPC                PowerMac  (as tested by Joshua Bell of lumpBBS)
+    FreeBSD 3.x / 4.x       intel PC
+    NetBSD 1.3              Sun Sparc-1
+    Solaris 2.6             Sun Sparc Ultra-1
+    SunOS 5.6               Sun Sparc Ultra-1
+    AIX 4.2.1 with DFS      IBM RS/6000
+    Irix 6.5.x              Silicon Graphics Indy/O2/O200/O2000/O3000 32-bit
+    Irix 6.5.x              SGI O3000 64-bit
+    Unicos 10.0.0.x         Cray C90
+    OS X                    Apple MacIntosh G5
+    RedHat Enterprise       IA64
+    SuSE Linux              IA64
+
+All this with just configure and make setup.
+The portability list changes with each version, so your mileage may vary.
+If you got bbs100 running on a platform not listed here, please share your
+experiences.
+
+
+WHAT ABOUT GCC 4?
+I have bad experiences with early versions of gcc 4. Maybe it is just me,
+but I have seen really strange crashes of code generated with gcc 4, while
+it was stable as a rock when built using gcc 3.
+On my test system, I explicitly specify the compiler of choice:
+
+    CC=gcc-3.3 ./configure --prefix=/home/bbs
+
+gcc 4.1 seems to be OK, but when in doubt, please use gcc-3.3.
+
+
+IS bbs100 IPv6 ENABLED?
+Yes. If you have problems with running bbs100 due to the networking code,
+please let me know.
+
+
+WHAT ABOUT RUNNING UNDER Cygwin?
+I did not succeed in building bbs100 3.0 with Cygwin 1.5.18 because it is not
+IPv6 ready. Check out http://win6.jp/Cygwin/ for Cygwin IPv6 extensions.
+(Your mileage may vary)
+Older versions of bbs100 do work with Cygwin, but need a source patch
+from http://www.heiho.net/bbs100/patches.html
+
+
+WHAT DOES request_module[net-pf-10]: fork failed, errno 1 DURING
+STARTUP MEAN?
+You are running Linux and the system is trying to load the IPv6 module.
+errno 1 means you don't have permission to do so. There can be other
+error codes as well.
+You can safely ignore the message and run on IPv4.
+
+
+I'M SEEING MESSAGES IN THE BBSLOG LIKE:
+Oct 16 00:10:56 W unknown keyword 'from_ip', ignored
+Oct 16 00:10:56 W unknown keyword 'from_ipnum', ignored
+These keywords in the UserData file changed. So whenever a user that was
+saved under version 2.x logs in to bbs100 3.x+, you will get to see these
+messages. When the user has been saved in 3.x, the message will no longer
+re-occur for that user.
+This is a warning that can safely be ignored.
+
+
+YAWC
+Why isn't YAWC mentioned anywhere in the README or CREDITS?
+Well, YAWC is yet another clone of DOC by Kenneth Haglund (also known as
+KHaglund). Last thing I've heard of YAWC is that its source code is not
+publicly available anymore. I haven't seen or spoken with KHaglund for
+years now.
+Anyway, bbs100 borrows not a single bit of the YAWC code (or in fact,
+any other code).
+
+
+MAILING LIST
+Is there a centralized place where people can get together and discuss bbs100
+related problems?
+There used to be a mailing list, but it is not active anymore.
+If you need help on modifying bbs100, the author (me) is always happy to
+provide you with some pointers and explain how specific parts of bbs100 work,
+and what you should do to make it work the way you want it to work.
+

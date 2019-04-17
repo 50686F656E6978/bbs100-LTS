@@ -1,0 +1,37 @@
+<green>This Help screen is a list of keypresses that apply to the <yellow>Sysop menu<green>.
+<yellow>
+<space><green>   Leaves the <yellow>Sysop menu<green>
+     <key>h/<key>?  Display this <yellow>Help<green> screen
+
+     <key>c    Create new room
+<white>Ctrl-<key>D<green>    Delete room; remove all room data
+     <key>d    Disconnect user
+<white>Ctrl-<key>N<green>    Nuke user; delete user
+     <key>b    Banish/Unbanish username
+     <key>w    Edit TCP wrappers for locking out sites
+     <key>f    Add or remove Feelings
+     <key>c    Add or remove room categories
+     <key>s    Upload or download screens and Help files
+     <key>l    View the access and error logs
+     <key>u    Remove file from internal cache
+
+<white>Ctrl-<key>P<green>    Adjust system parameters and configuration
+     <key>p    Change <yellow>Super User<green> mode password
+
+<white>Ctrl-<key>R<green>    Schedule a reboot
+<white>Ctrl-<key>S<green>    Schedule shutdown
+     <key>n    Toggle nologin status; when set, nobody can login
+     <key>$    Drop out of Sysop mode
+
+<white>Ctrl-<key>L<green>    Reprint menu
+
+<white>Note:<green> When a user or room is deleted, it is moved to the <yellow>trash/<green> folder.
+      Thus, a system administrator should able to restore the deleted data.
+      There is no way to do this from within the BBS.
+
+Any changes in the <yellow>Parameters<green> subsection are made in real-time. This means
+that changes to parameters come into effect immediately. The parameters are
+saved in the param file as soon as you leave the subsection. To discard these
+changes and revert to the old configuration, you can <yellow>Reload<green> the param file
+before exiting the <yellow>Parameters<green> submenu.
+ 

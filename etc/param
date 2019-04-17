@@ -1,0 +1,108 @@
+#
+# bbs100 param file etc/param
+#
+
+bbs_name                bbs100
+bind_address            0.0.0.0
+port_number             1234
+
+basedir                 xxx
+bindir                  bin/
+confdir                 etc/
+helpdir                 etc/help/
+feelingsdir             etc/feelings/
+zoneinfodir             /usr/share/zoneinfo/
+userdir                 users/
+roomdir                 rooms/
+trashdir                trash/
+umask                   007
+
+program_main            bin/main
+program_resolver        bin/resolver
+
+gpl_screen              etc/GPL
+mods_screen             etc/local_mods
+credits_screen          etc/credits
+login_screen            etc/login
+logout_screen           etc/logout
+nologin_screen          etc/nologin
+motd_screen             etc/motd
+reboot_screen           etc/reboot
+shutdown_screen         etc/shutdown
+crash_screen            etc/crash
+boss_screen             etc/boss
+first_login             etc/first_login
+
+hostmap_file            etc/hostmap
+hosts_access_file       etc/hosts_access
+banished_file           etc/banished
+stat_file               etc/stats
+su_passwd_file          etc/su_passwd
+pid_file                etc/pid
+symtab_file             etc/symtab
+default_timezone        other/GMT
+
+syslog                  log/bbslog
+authlog                 log/authlog
+newusers                log/newusers
+logrotate               daily
+archivedir              log/archive/
+oncrash                 recover
+crashdir                log/crash/
+
+max_cached              256
+max_messages            50
+max_mail_msgs           50
+max_msg_lines           1000
+max_xmsg_lines          7
+max_history             50
+max_chat_history        10
+max_friend              100
+max_enemy               100
+max_newuserlog          20
+idle_timeout            10
+lock_timeout            30
+periodic_saving         5
+cache_expire			10
+helper_age              1
+
+name_sysop              Sysop
+name_room_aide          Room Aide
+name_helper             Helping Hand
+name_guest              Guest
+
+notify_login            is formed from some <yellow>golden<magenta> stardust
+notify_logout           explodes into <yellow>golden<magenta> stardust
+notify_linkdead         freezes up and crumbles to dust
+notify_idle             has been logged out due to inactivity
+notify_locked           is away from the terminal for a while
+notify_unlocked         has returned to the terminal
+notify_hold             has put messages on hold
+notify_unhold           is accepting messages directly again
+notify_enter_chat       enters through a dimensional gateway
+notify_leave_chat       leaves through a dimensional gateway
+
+have_xmsgs				yes
+have_emotes				yes
+have_feelings			yes
+have_questions			yes
+have_quick_x			yes
+have_xmsg_hdr           yes
+have_vanity             yes
+have_talkedto			yes
+have_hold_msgs			yes
+have_followup			yes
+have_x_reply			yes
+have_calendar           yes
+have_worldclock			yes
+have_chatrooms          yes
+have_guessname_rooms    yes
+have_homeroom           yes
+have_mailroom           yes
+have_category           yes
+have_wrapper_all        yes
+have_filecache          yes
+have_resident_info      yes
+have_disabled_msg       yes
+
+# EOB

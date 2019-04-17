@@ -1,0 +1,216 @@
+bbs100 by Walter de Jong <walter@heiho.net> (C) 1997-2015
+
+bbs100 COMES WITH NO WARRANTY. bbs100 IS FREE SOFTWARE.
+bbs100 is distributed under terms described in the GNU General Public License.
+
+
+bbs100 version 3.3 changes:
+ * SLUB memory allocator is good for small allocations (and there are many!)
+ * Sysop can review the slab cache statistics in the Sysop menu
+ * default files for worldclock are in /usr/share/zoneinfo
+
+
+--
+
+bbs100 version 3.2 is a minor update to version 3.1. Most important changes:
+ * fixed a bug that could crash the BBS
+ * the Help function is now a menu system; update any custom Help files
+   if you have them
+   See the UPGRADING file for more information.
+
+The rest of this file is about what is new in version 3.1 and 3.0.
+
+--
+
+bbs100 version 3.1 is a minor update to version 3.0. Most important are the
+updated timezone files to keep the right track of time.
+The rest of this file is about what is new in version 3.0.
+
+--
+
+It's finally here, bbs100 version 3.0. I never thought we'd have a version 3,
+but so much has changed internally, that there was no way around it.
+
+What's new to the users?
+There are a lot of new options in the Config menu:
+
+- vanity flag that appears in the user's profile info
+- personal customizable eXpress Message header
+- option of hiding the address information in the profile info
+  from people who are not on the friends list
+  This option is under Config|Address
+- the Terminal Settings menu has a number of new options;
+  - hotkeys can be shown bright/bold
+  - hotkeys can be shown in uppercase
+  - hotkeys can be shown with angle brackets
+  - terminal screen width and height can be adjusted if needed;
+    the BBS detects correct screen width and height
+  - user can choose 'classic' or 'modern' color scheme;
+    the classic color scheme looks more like DOC, while
+    the modern color scheme has a more dynamic look;
+    What it does is automatically color symbols, giving subtle accents
+    to strings
+  - user can customize what characters are automatically colored, and
+    what color they will have
+- the friends/enemies menu now are in the same style as the other
+  Config menus
+- the Options submenu is entirely new;
+  - users can choose to have sequence numbers displayed in the
+    eXpress message header
+  - Hold message mode when busy selects a more modern way of reading
+    held messages after you were busy
+  - users may choose whether they want to give a reason when they
+    lock the terminal or go into Hold message mode
+  - users may choose whether a room generates a beep when someone makes
+    a new post in that room
+  - if you like, you won't be stuck in the Lobby> when there are no new
+    messages, but be cycled around to urge you to post somewhere
+  - choose whether downloaded text shows color codes in long or short format
+  - choose whether downloads pause every screen or not
+  - 'verbose friend notification' shows even more friend notifications
+  - choose whether 'p' shows long or short profile
+  - users may choose to hide their profile info from enemies
+  - default room can be set; this is convenient when posting a lot in a
+    specific high traffic room, eg. Babble>
+  - user can set that Upload is the default for entering messages
+  - you can have X disable block friends as well
+
+- 'p' shows long profile info, 'P' shows short profile info
+- when entering colors into a message, the colors are immediately displayed
+- color codes take up only 1 position
+- yet another notation of color codes is possible, using the caret or
+  the tilde (whichever you prefer)
+- Tab can be used to expand long color codes
+- the tab character can be used in messages, it expands to 4 spaces
+- on smaller terminals, the BBS will do word-wrapping
+- on smaller terminals, the BBS will display --More-- prompts for menus
+  that would otherwise scroll off the screen
+- the boss key hides what you're doing (for when the boss walks by)
+- X History has a new look and most functions work on that prompt as well
+- Held messages prompt has a new look and most functions work on that
+  prompt as well
+- the known rooms list may show room categories
+- it prints the online status after unlocking
+- chat rooms scroll messages in a better way
+- when undeleting a deleted message, you first get to read the message
+  and then you have the choice of undeleting it or not
+- 's' skips the room so you get to read the messages later on
+  (this is a change; 's' used to be Stop reading, but it was annoying.
+  To stop reading, enter something like '+1000' to go to the last post
+  in the room)
+- Read New shows the number of new messages
+- profile info can be downloaded
+- users can send eXpress messages to themselves again, which is especially
+  nice if you want to see what a specific Feeling looks like
+- when deleting a Mail> message, it will also delete the recipient's copy
+- it is possible to undelete multi-Mail>s as well
+- when message reception is turned off, the people that you X, may X you
+  back
+- press 'o' at room level to manage your override list, go via the Friends
+  and Enemies menu
+
+
+What's new to the admins?
+- room aides can download the room info
+- IPv6 wrappers; IPv4 wrappers are also still available
+- option 'wrapper apply to all' or 'wrapper applies to new users only'
+- per-room maximum of messages
+- rooms can be in a category
+- 'since boot' statistics in the Statistics screen
+- nologin shown more clearly in Sysop menu, when active
+- nologin persists after a reboot via file etc/nologin.is.active
+- cancel reboot works with the same key as reboot
+  this kills the function of reprogramming a running reboot timer,
+  but hey ...
+- cancel shutdown works with the same key as shutdown
+  this kills the function of reprogramming a running shutdown timer,
+  but hey ...
+- when entering a message as sysop or room aide, it shows it to the posting
+  user in the header
+- param umask controls the umask
+- param bind_address allows you to bind to a specific interface;
+  especially binding to localhost can be useful
+- configurable notification string for when a user uses Hold message mode
+- configurable minimum age for users that want to be a Helping Hand
+- option of keeping room info and profile info resident in memory or not
+- when locked, Sysops must use their Sysop password to unlock
+- Lobby> can be a chat room without problems
+- who-list for a room has been removed to respect the privacy of the users
+- long profile shows user's BBS birth date
+  (users can see theirs in the Statistics screen)
+- Help files and screens can be uploaded from the sysop menu
+- sysop can add/remove feelings from the sysop menu
+- sysop can view the logfiles from within the BBS, including the new log
+  that logs all new users
+- guess-name rooms can be toggled on or off; a guess-name room is a hidden
+  but public room, that the user can join if he/she knows the room name.
+  Turning this feature off makes hidden rooms appear as non-existent to users
+  who are not invited or room aide there.
+- sysop menu shows extensive information on the BinAlloc memory allocator
+  if it is enabled
+- make live core dumps for debugging when built with -DEBUG
+
+
+What's new internally?
+- configure with --enable-debug=no to leave out extra debug code
+- configure with --enable-binalloc to build with BinAlloc support
+- IPv6 capable networking code
+- object oriented Conn (connection) class, implemented in standard C
+- new mainloop handles connections flawlessly; it does correct input
+  and output buffering
+- much use of new type StringIO, which are automatically growing buffers
+  rather than lists of strings
+  (less memory fragmentation)
+- much use of new type Queue, which is a foundation for lists. It does
+  adding, prepending, and counting of objects in an efficient way
+- much use of new type KVPair (key-value pair)
+- messages in the X History are reference counted rather than copied;
+  (this is fast and saves memory)
+- cached files are referenced rather than copied;
+  (this is fast and saves memory)
+- talked-to list is generated from X history rather than copied
+  (this is not fast, but does save memory)
+- feelings are cached rather than always resident
+  (this saves memory)
+- the feelings menu is no longer kept in memory
+- the timezone menu's are no longer pre-indexed
+- helping hands are selected in an efficient way
+- scalability: mail is sent, deleted, and undeleted in a loop
+- CRC-32 is used for computing hash keys
+  (far less cache collisions, and it's not all that much slower either)
+- room info and profile info can be 'offline', not permanently resident
+  in memory
+  (this saves memory)
+- ROOM_DIRTY flag prevents unnecessary saving of rooms
+  (this is more efficient)
+- Put() now calls Out(), which calls Out_text(), which does word-wrapping
+  and auto-coloring of symbols
+  (slow, but it looks cool)
+- output can be buffered temporarily and then be displayed with a --More--
+  prompt by a simple call to buffer_text()
+- CALLX() can directly call into a substate different from INIT_STATE
+- RETX() can return to a substate different from INIT_STATE
+- temp variables between states can be passed via the CallStack by using
+  PUSH_ARG() and POP_ARG(), eliminating some dirty hacks
+- state_room.c holds room prompt functions; most common functions are
+  done in state.c in fun_common()
+- bufprintf() and bufvprintf(), which map to snprintf() and vsnprintf(),
+  if HAVE_SNPRINTF and HAVE_VSNPRINTF are defined in config.h
+- bounds checking against buffer overruns with cstrcpy() and cstrcat()
+- hostmap is no longer permanently loaded, but works through the file cache
+- BinAlloc memory allocator minimizes fragmentation if it is enabled
+  (bins of a different type but the same size are linked together)
+- rooms no longer keep an index of messages, but only a head and tail
+  pointer
+  (this saves memory and is much, much faster)
+- patches may be listed in patchlist.c so that everyone can see which
+  patches have been applied
+- usr->flags2 adds some more config bits
+- new zoneinfo files so the time keeps being displayed correctly
+- a seperate 'guard' process reboots the BBS when needed
+- lists are now sorted using merge sort, much more efficient than the way
+  it used to be
+- some bugs fixed ...
+
+
+EOB
